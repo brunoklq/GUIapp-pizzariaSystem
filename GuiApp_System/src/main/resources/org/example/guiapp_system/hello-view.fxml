@@ -37,7 +37,7 @@
    <AnchorPane prefHeight="502.0" prefWidth="522.0">
       <children>
          <Label layoutX="34.0" layoutY="26.0" text="Number Order" />
-         <TextField layoutX="132.0" layoutY="22.0" prefHeight="26.0" prefWidth="98.0" />
+         <TextField fx:id="number" layoutX="132.0" layoutY="22.0" prefHeight="26.0" prefWidth="98.0" />
          <TextField layoutX="109.0" layoutY="261.0" prefHeight="26.0" prefWidth="105.0" />
          <Label layoutX="43.0" layoutY="265.0" text="Rate" />
          <Label layoutX="284.0" layoutY="26.0" text="Customer Name" />
