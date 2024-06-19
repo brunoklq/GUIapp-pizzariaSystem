@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.*;
+
 public class Controller implements Initializable {
 
     @FXML
@@ -27,6 +29,10 @@ public class Controller implements Initializable {
     private CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
     @FXML
     private TextField valueTopping;
+    @FXML
+    private TextField total;
+    @FXML
+    private TextField quantity;
 
 
     int onion = 2;
@@ -35,81 +41,99 @@ public class Controller implements Initializable {
     int corn = 1;
     int orderNumber = 1000;
     int value = 0;
+    int quantityPizza = 1;
+
+
+
     public void getFood(ActionEvent event){
 
         if (rbutton1.isSelected()){
-             rate.setText("$"+ 10);
+            rate.setText(String.valueOf(10));
 
         }
         if (rbutton2.isSelected()){
 
-            rate.setText("$"+ 20);
+            rate.setText(String.valueOf(20));
         }
         if (rbutton3.isSelected()){
-            rate.setText("$"+ 25);
+            rate.setText(String.valueOf(25));
         }
-
     }
     public void getFood2(ActionEvent event){
 
-
-
-
         if (checkbox1.isSelected()){
-           valueTopping.setText("$"+String.valueOf(onion));
+           valueTopping.setText(String.valueOf(onion));
 
            if (checkbox1.isSelected() && checkbox3.isSelected()){
-               valueTopping.setText("$"+String.valueOf(+onion+tomato));
+               valueTopping.setText(String.valueOf(+onion+tomato));
            }
            if (checkbox1.isSelected() && checkbox4.isSelected()){
-               valueTopping.setText("$"+String.valueOf(onion+corn));
+               valueTopping.setText(String.valueOf(onion+corn));
            }
            if (checkbox1.isSelected() && checkbox2.isSelected()){
-               valueTopping.setText("$"+String.valueOf(onion+cheese));
+               valueTopping.setText(String.valueOf(onion+cheese));
            }
 
             if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected()){
 
-                valueTopping.setText("$"+String.valueOf(onion+cheese+tomato));
+                valueTopping.setText(String.valueOf(onion+cheese+tomato));
             }
            if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox4.isSelected()){
-               valueTopping.setText("$"+String.valueOf(onion+cheese+corn));
+               valueTopping.setText(String.valueOf(onion+cheese+corn));
            }
            if (checkbox1.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
-               valueTopping.setText("$"+String.valueOf(onion+tomato+corn));
+               valueTopping.setText(String.valueOf(onion+tomato+corn));
 
            }
             if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
-                valueTopping.setText("$"+String.valueOf(onion+cheese+tomato+corn));
+                valueTopping.setText(String.valueOf(onion+cheese+tomato+corn));
             }
         }
         else if (checkbox2.isSelected()){
-            valueTopping.setText("$"+String.valueOf(cheese));
+            valueTopping.setText(String.valueOf(cheese));
             if (checkbox2.isSelected() && checkbox3.isSelected()){
-                valueTopping.setText("$"+String.valueOf(cheese+tomato));
+                valueTopping.setText(String.valueOf(cheese+tomato));
             }
             if (checkbox2.isSelected() && checkbox4.isSelected()){
-                valueTopping.setText("$"+String.valueOf(cheese+corn));
+                valueTopping.setText(String.valueOf(cheese+corn));
             }
             if (checkbox2.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
-                valueTopping.setText("$"+String.valueOf(cheese+tomato+corn));
+
+
+                valueTopping.setText(String.valueOf(cheese+tomato+corn));
+
             }
 
         }
 
          else if (checkbox3.isSelected()){
-            valueTopping.setText("$"+String.valueOf(tomato));
+            valueTopping.setText(String.valueOf(tomato));
             if (checkbox3.isSelected() && checkbox4.isSelected()){
-                valueTopping.setText("$"+String.valueOf(tomato+corn));
+                valueTopping.setText(String.valueOf(tomato+corn));
             }
         }
         else if (checkbox4.isSelected()){
-            valueTopping.setText("$"+String.valueOf(corn));
+            valueTopping.setText(String.valueOf(corn));
         }
 
         else {
-            valueTopping.setText("$"+String.valueOf(value));
+            valueTopping.setText(String.valueOf(value));
         }
+
+
+
+    }
+
+    public void generateInvoice(){
+
+    int quantityPizza2 = Integer.parseInt(String.valueOf(quantity.getText()));
+    int topping = parseInt(valueTopping.getText());
+    int rateValue = parseInt(rate.getText());
+    int sum = (topping+rateValue)*quantityPizza2;
+    total.setText("$"+sum);
+
+
+
     }
 
     @FXML
@@ -121,7 +145,6 @@ public class Controller implements Initializable {
 
         welcomeText.setText("Welcome "+nameFinal+" your total bill is "+number.getText());
 
-
         System.out.println(name);
 
     }
@@ -132,6 +155,8 @@ public class Controller implements Initializable {
         welcomeText.setText("Your oder will drop here");
         number.setText(String.valueOf(orderNumber));
         valueTopping.setText("$"+String.valueOf(value));
+        quantity.setText(String.valueOf(quantityPizza));
         name.getText();
+
     }
 }
