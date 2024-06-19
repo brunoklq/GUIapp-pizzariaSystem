@@ -1,7 +1,10 @@
 package org.example.guiapp_system;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -10,25 +13,125 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    @FXML
+    private TextArea welcomeText;
+    @FXML
+    private TextField  number ;
+    @FXML
+    private TextField name;
+    @FXML
+    private TextField rate;
+    @FXML
+    private RadioButton rbutton1, rbutton2, rbutton3;
+    @FXML
+    private CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
+    @FXML
+    private TextField valueTopping;
+
+
+    int onion = 2;
+    int cheese = 3;
+    int tomato = 3;
+    int corn = 1;
+    int orderNumber = 1000;
+    int value = 0;
+    public void getFood(ActionEvent event){
+
+        if (rbutton1.isSelected()){
+             rate.setText("$"+ 10);
+
+        }
+        if (rbutton2.isSelected()){
+
+            rate.setText("$"+ 20);
+        }
+        if (rbutton3.isSelected()){
+            rate.setText("$"+ 25);
+        }
+
+    }
+    public void getFood2(ActionEvent event){
+
+
+
+
+        if (checkbox1.isSelected()){
+           valueTopping.setText("$"+String.valueOf(onion));
+
+           if (checkbox1.isSelected() && checkbox3.isSelected()){
+               valueTopping.setText("$"+String.valueOf(+onion+tomato));
+           }
+           if (checkbox1.isSelected() && checkbox4.isSelected()){
+               valueTopping.setText("$"+String.valueOf(onion+corn));
+           }
+           if (checkbox1.isSelected() && checkbox2.isSelected()){
+               valueTopping.setText("$"+String.valueOf(onion+cheese));
+           }
+
+            if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected()){
+
+                valueTopping.setText("$"+String.valueOf(onion+cheese+tomato));
+            }
+           if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox4.isSelected()){
+               valueTopping.setText("$"+String.valueOf(onion+cheese+corn));
+           }
+           if (checkbox1.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
+               valueTopping.setText("$"+String.valueOf(onion+tomato+corn));
+
+           }
+            if (checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
+                valueTopping.setText("$"+String.valueOf(onion+cheese+tomato+corn));
+            }
+        }
+        else if (checkbox2.isSelected()){
+            valueTopping.setText("$"+String.valueOf(cheese));
+            if (checkbox2.isSelected() && checkbox3.isSelected()){
+                valueTopping.setText("$"+String.valueOf(cheese+tomato));
+            }
+            if (checkbox2.isSelected() && checkbox4.isSelected()){
+                valueTopping.setText("$"+String.valueOf(cheese+corn));
+            }
+            if (checkbox2.isSelected() && checkbox3.isSelected() && checkbox4.isSelected()){
+                valueTopping.setText("$"+String.valueOf(cheese+tomato+corn));
+            }
+
+        }
+
+         else if (checkbox3.isSelected()){
+            valueTopping.setText("$"+String.valueOf(tomato));
+            if (checkbox3.isSelected() && checkbox4.isSelected()){
+                valueTopping.setText("$"+String.valueOf(tomato+corn));
+            }
+        }
+        else if (checkbox4.isSelected()){
+            valueTopping.setText("$"+String.valueOf(corn));
+        }
+
+        else {
+            valueTopping.setText("$"+String.valueOf(value));
+        }
+    }
 
     @FXML
-    public TextArea welcomeText;
-    public TextField  number ;
+    public void onHelloButtonClick() {
 
-    int rate = 1000;
+        String nameFinal = name.getText();
+
+        number.setText(String.valueOf(orderNumber+orderNumber));
+
+        welcomeText.setText("Welcome "+nameFinal+" your total bill is "+number.getText());
 
 
-    @FXML
-    protected void onHelloButtonClick() {
+        System.out.println(name);
 
-
-        welcomeText.setText("Welcome to JavaFX Application!");
-        number.setText(String.valueOf(rate+rate));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         welcomeText.setText("Your oder will drop here");
-        number.setText(String.valueOf(rate));
+        number.setText(String.valueOf(orderNumber));
+        valueTopping.setText("$"+String.valueOf(value));
+        name.getText();
     }
 }

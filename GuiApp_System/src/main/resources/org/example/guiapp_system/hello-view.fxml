@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -38,19 +39,22 @@
       <children>
          <Label layoutX="34.0" layoutY="26.0" text="Number Order" />
          <TextField fx:id="number" layoutX="132.0" layoutY="22.0" prefHeight="26.0" prefWidth="98.0" />
-         <TextField layoutX="109.0" layoutY="261.0" prefHeight="26.0" prefWidth="105.0" />
-         <Label layoutX="43.0" layoutY="265.0" text="Rate" />
+         <TextField fx:id="rate" layoutX="109.0" layoutY="261.0" onAction="#getFood" prefHeight="26.0" prefWidth="105.0" />
+         <Label layoutX="33.0" layoutY="265.0" text="Pizza Rate" />
          <Label layoutX="284.0" layoutY="26.0" text="Customer Name" />
-         <TextField layoutX="382.0" layoutY="22.0" prefHeight="26.0" prefWidth="98.0" />
+         <TextField fx:id="name" layoutX="382.0" layoutY="22.0" prefHeight="26.0" prefWidth="98.0" />
          <Label layoutX="294.0" layoutY="266.0" text="Total" />
          <TextField layoutX="332.0" layoutY="262.0" prefHeight="26.0" prefWidth="98.0" />
          <AnchorPane layoutX="30.0" layoutY="72.0" prefHeight="158.0" prefWidth="200.0" style="-fx-border-color: black;">
             <children>
                <Group layoutX="25.0" layoutY="36.0">
                   <children>
-                     <RadioButton mnemonicParsing="false" text="Pan Pizza" />
-                     <RadioButton layoutY="27.0" mnemonicParsing="false" text="Stuffed Crust" />
-                     <RadioButton layoutY="54.0" mnemonicParsing="false" text="Regular" />
+                     <RadioButton fx:id="rbutton1" mnemonicParsing="false" onAction="#getFood" text="Pan Pizza">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="pizzatype" />
+                        </toggleGroup></RadioButton>
+                     <RadioButton fx:id="rbutton2" layoutY="27.0" mnemonicParsing="false" onAction="#getFood" text="Stuffed Crust" toggleGroup="$pizzatype" />
+                     <RadioButton fx:id="rbutton3" layoutY="54.0" mnemonicParsing="false" onAction="#getFood" text="Regular" toggleGroup="$pizzatype" />
                   </children>
                </Group>
                <Label layoutX="11.0" layoutY="6.0" text="Pizza Type">
@@ -69,15 +73,15 @@
                </Label>
                <Group layoutX="28.0" layoutY="37.0">
                   <children>
-                     <CheckBox mnemonicParsing="false" text="Onion" />
-                     <CheckBox layoutY="27.0" mnemonicParsing="false" text="Cheese" />
-                     <CheckBox layoutY="54.0" mnemonicParsing="false" text="Tomato" />
-                     <CheckBox layoutY="81.0" mnemonicParsing="false" text="Corn" />
+                     <CheckBox fx:id="checkbox1" mnemonicParsing="false" onAction="#getFood2" text="Onion" />
+                     <CheckBox fx:id="checkbox2" layoutY="27.0" mnemonicParsing="false" onAction="#getFood2" text="Cheese" />
+                     <CheckBox fx:id="checkbox3" layoutY="54.0" mnemonicParsing="false" onAction="#getFood2" text="Tomato" />
+                     <CheckBox fx:id="checkbox4" layoutY="81.0" mnemonicParsing="false" onAction="#getFood2" text="Corn" />
                   </children>
                </Group>
             </children>
          </AnchorPane>
-         <TextField layoutX="109.0" layoutY="301.0" prefHeight="26.0" prefWidth="105.0" />
+         <TextField fx:id="valueTopping" layoutX="109.0" layoutY="301.0" onAction="#getFood2" prefHeight="26.0" prefWidth="105.0" />
          <Label layoutX="12.0" layoutY="305.0" text="Cost of Toppings" />
          <Label layoutX="274.0" layoutY="306.0" text="Quantity" />
          <TextField layoutX="332.0" layoutY="302.0" prefHeight="26.0" prefWidth="98.0" />
